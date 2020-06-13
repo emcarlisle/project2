@@ -1,0 +1,48 @@
+{
+  "name": "node-handlebars-boilerplate",
+  "version": "1.0.0",
+  "description": "Project 2 Starter",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "format": "prettier-standard --format",
+    "lint": "semistandard --verbose | snazzy",
+    "lint:fix": "semistandard --fix",
+    "orm:help": "sequelize --help",
+    "orm:model:create": "sequelize model:generate --attributes placeholder:string --name",
+    "orm:seed:create": "sequelize seed:generate --name",
+    "orm:migration:create": "sequelize migration:generate --name",
+    "orm:migrate": "sequelize db:migrate",
+    "orm:migrate:reset": "sequelize db:migrate:undo:all && npm run orm:migrate",
+    "orm:seed": "sequelize db:seed:all",
+    "precommit": "lint-staged",
+    "prestart": "sequelize db:create && npm run orm:migrate",
+    "pretest": "cross-env NODE_ENV=test npm run orm:migrate:reset"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "sequelize": "^4.44.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "lint-staged": "^10.2.10",
+    "prettier-standard": "^16.3.0",
+    "semistandard": "*",
+    "sequelize-cli": "^5.5.1",
+    "snazzy": "^8.0.0",
+    "supertest": "^4.0.2"
+  },
+  "lint-staged": {
+    "**/*": [
+      "prettier-standard --lint",
+      "git add"
+    ]
+  }
+}
