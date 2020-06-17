@@ -1,16 +1,16 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "password",
     "database": "database_development",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "testdb",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
