@@ -1,3 +1,42 @@
 .list-group-item {
   line-height: 2.5;
 }
+body {
+  background-color: #C9E7ED;
+}
+h1 {
+  font-size: 50px;
+  color: white;
+  background-color: #71DA62;
+  margin: 10px;
+  box-shadow: 5px 5px skyblue;
+  text-shadow: 2px 2px 4px #000000;
+}
+#submit {
+  margin-bottom: 100px;
+}
+section {
+  border-style: groove;
+  border-color: white;
+}
+h1 img {
+  width: 200px;
+  height: 100px;
+}
+.form-control {
+  border-style: ridge;
+  border-color: black;
+  border-width: 1px;
+}
+.card {
+  width: 21%!important;
+  float: right;
+  margin: 10px;
+  font-size: 10px;
+}
+.savedItems {
+  display: block;
+}
+label {
+  padding-right: 15%;
+}
