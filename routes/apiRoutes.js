@@ -1,19 +1,13 @@
-const router = require('express').Router;
-//const exampleRoutes = require('./examples');
+const Router = require('express').Router;
 const postRoutes = require('./posts');
-router.use('/posts', postRoutes);
 
-// this route gets all posts
-router.get('/api/post', (req, res) => {
-    db.Post.findAll({}).then(post => {
-        res.json(post);
-    })
-})
+const apiRoutes = Router();
 
-//apiRoutes.use('/examples', exampleRoutes);
+apiRoutes.use('/posts', postRoutes);
 
 //Create a new user
-router.post("/signup", (req, res) => {
+apiRoutes.post("/signup", (req, res) => {
+
     db.User.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -21,19 +15,27 @@ router.post("/signup", (req, res) => {
         username: req.body.username,
         password: req.body.password
     }).then(() => {
-        res.redirect(307, "/api/login");
+
+        res.redirect(307, "/login");
+
     });
 });
 
 //Login
-router.post('/login', passport("local"), (req, res) => {
-    if (!req.user) {
-        res.json({});
-    }
-    res.json({
-        username: req.user.email,
-        id: req.user.id
-    })
-});
 
-module.exports = router;
+
+// apiRoutes.post('/login', passport("local"), (req, res) => {
+//     if (!req.user) {
+//         res.json({});
+//     }
+//     res.json({
+//         username: req.user.email,
+//         id: req.user.id
+//     })
+// });
+
+//
+
+module.exports = apiRoutes;
+
+
