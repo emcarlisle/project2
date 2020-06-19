@@ -44,3 +44,13 @@ h1 img {
 label {
   padding-right: 15%;
 }
+.btn-warning {
+  margin: 3%;
+  float: right;
+}
+.modal-content{
+  width: 85%!important;
+}
+.signUp {
+  width: 100%;
+}
