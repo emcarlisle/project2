@@ -1,3 +1,5 @@
-DROP DATABASE IF EXISTS database_development;
+DROP DATABASE IF EXISTS user_db;
 
-CREATE DATABASE database_development;
+CREATE DATABASE user_db;
+
+USE user_db;
