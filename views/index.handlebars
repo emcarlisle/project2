@@ -1,31 +1,96 @@
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+      <div class="col-12 mb-5">
+        {{!-- <h1>{{msg}}</h1> --}}
+        <h1><img
+            src="https://s3-ap-southeast-2.amazonaws.com/apac-production-wp/app/uploads/2017/08/19083003/logo-placeholder-1.png">One
+          Man's Trash!</h1>
       </div>
     </div>
+    <div class="row">
+      <form class="clearfix mb-4 col-4 offset-4 text-center" action="POST">
+        <div class="form-group">
+          <label for="search-items"><strong>Search for an Item: </strong></label>
+          <input type="text" id="searchItems" class="form-control" aria-describedby="search-items"
+            placeholder="Type Item Name">
+        </div>
+        <button id="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+    <div class="row">
+      <section class="col-6 offset-1">
+        <h2>Free Item Inventory</h2>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple Placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg" class="card-img-top" alt="example">
+          <div class="card-body">
+            <p class="card-text">Simple placeholder</p>
+          </div>
+        </div>
+
+      </section>
+      <section class="col-4">
+        <h2>Saved Items</h2>
+        <div class="savedItems"><label for="savedItems">Placeholder</label><button id="delete" class="btn-danger">Delete</button></div>
+        <div class="savedItems"><label for="savedItems">Placeholder</label><button id="delete" class="btn-danger">Delete</button></div>
+        <div class="savedItems"><label for="savedItems">Placeholder</label><button id="delete" class="btn-danger">Delete</button></div>
+        <div class="savedItems"><label for="savedItems">Placeholder</label><button id="delete" class="btn-danger">Delete</button></div>
+        <div class="savedItems"><label for="savedItems">Placeholder</label><button id="delete" class="btn-danger">Delete</button></div>
+
+      </section>
+    </div>
+    {{!-- <ul id="example-list" class="list-group">
+        {{#each examples}}
+        <li data-id="{{this.id}}" class="list-group-item">
+          <a href="example/{{this.id}}">{{this.text}}</a>
+          <button class="btn btn-danger float-right delete">ｘ</button>
+        </li>
+        {{/each}}
+      </ul> --}}
+
+
   </div>
 </div>
 
