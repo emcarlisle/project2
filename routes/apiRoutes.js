@@ -2,6 +2,7 @@ const router = require('express').Router;
 //const exampleRoutes = require('./examples');
 const db = require('../models');
 
+
 //const apiRoutes = Router();
 
 // this route gets all posts
@@ -17,29 +18,36 @@ router.get('/api/post', (req, res) => {
 
 module.exports = router;
 
-apiRoutes.get("/api/all", function (req, res) {
-    
+
+const apiRoutes = Router();
+//Create a new user
+apiRoutes.post("/api/signup", (req, res) => {
+    db.User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password
+    }).then(() => {
+        res.rederect(307, "/api/login");
+    });
 });
 
-apiRoutes.post("/api/post/:id", function (req, res) {
-
+//Login
+apiRoutes.post('/api/login', passport("local"), (req, res) => {
+    if (!req.user) {
+        res.json({});
+    }
+    res.json({
+        username: req.user.email,
+        id: req.user.id
+    })
 });
 
-apiRoutes.delete("/api/post/:id", function (req, res) {
+//
 
-});
 
-apiRoutes.put("/api/post", function (req, res) {
-
-});
 
 
 module.exports = apiRoutes;
 
-//create post
-
-//save post
-//get all saved
-//get specific post
-//delete saved post
-//update a post
