@@ -10,92 +10,122 @@
 
 <body>
   <div id="home">
-    <div class="container">
+    <header class="container">
       <div class="row">
         <div class="col-12 mb-5">
           <h1><img
               src="https://s3-ap-southeast-2.amazonaws.com/apac-production-wp/app/uploads/2017/08/19083003/logo-placeholder-1.png">One
-            Man's Trash</h1>
+            Man's Trash
+            <button class="btn btn-light"><a href="#" data-toggle="modal" data-target="#myModal">Login</a></button></h1>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog form-dark" role="document">
-              <!-- Modal Content-->
-              <div class="modal-content card card-image"
-                style="background-image: url('https://www.thindifference.com/wp-content/uploads/2014/06/L1020944.jpg');">
-                <div class="text-white rgba-stylish-strong px-5 z-depth-4">
-                  <!-- Modal Header-->
-                  <div class="modal-header text-center pb-4">
-                    <h3 class="signUp"><strong>SIGN UP</strong></h3>
-                    <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+    </header>
+    <!--Modal: Login / Register Form-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');">
+          <!--Modal cascading tabs-->
+          <div class="modal-c-tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+                  Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+                  Register</a>
+              </li>
+            </ul>
+
+            <!-- Tab panels -->
+            <div class="tab-content">
+              <!--Panel 7-->
+              <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                <!--Body-->
+                <div class="modal-body mb-1">
+                  <div class="md-form form-sm mb-2">
+                    <i class="fas fa-envelope prefix"></i>
+                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput10">Email</label>
                   </div>
-                  <!--Modal Body-->
-                  <div class="modal-body">
-                    <!--Body-->
-                    <div class="md-form mb-5">
-                      <input type="email" id="Form-email5" class="form-control validate white-text">
-                      <label data-error="wrong" data-success="right" for="Form-email5">Your
-                        email</label>
-                    </div>
 
-                    <div class="md-form pb-3">
-                      <input type="password" id="Form-pass5" class="form-control validate white-text">
-                      <label data-error="wrong" data-success="right" for="Form-pass5">Your
-                        password</label>
-                    </div>
-
-                    <!--Grid row-->
-                    <div class="row d-flex align-items-center mb-4">
-
-                      <!--Grid column-->
-                      <div class="text-center mb-3 col-md-12">
-                        <button type="button" class="btn btn-success btn-block btn-rounded z-depth-1">Sign up</button>
-                      </div>
-                      <!--Grid column-->
-
-                    </div>
-                    <!--Grid row-->
-
-                    <!--Grid row-->
-                    <div class="row">
-
-                      <!--Grid column-->
-                      <div class="col-md-12">
-                        <p class="font-small white-text d-flex justify-content-end">Have an account?
-                          <a href="#" class="green-text ml-1 font-weight-bold">
-                            Log in</a></p>
-                      </div>
-                      <!--Grid column-->
-
-                    </div>
-                    <!--Grid row-->
-
+                  <div class="md-form form-sm mb-2">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput11">Password</label>
+                  </div>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-info">LOG IN <i class="fas fa-sign-in ml-1"></i></button>
                   </div>
                 </div>
+
               </div>
-              <!--/.Content-->
+              <!--/.Panel 7-->
+
+              <!--Panel 8-->
+              <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                <!--Body-->
+                <div class="modal-body">
+                  <div class="md-form form-sm mb-2">
+                    <i class="fas fa-envelope prefix"></i>
+                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">First Name</label>
+                  </div>
+
+                  <div class="md-form form-sm mb-2">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput13">Last Name</label>
+                  </div>
+
+                  <div class="md-form form-sm mb-2">
+                    <i class="fas fa-envelope prefix"></i>
+                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Username</label>
+                  </div>
+
+                  <div class="md-form form-sm mb-2">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput13">Email</label>
+                  </div>
+
+                  <div class="md-form form-sm mb-5">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                    <label data-error="wrong" data-success="right" for="modalLRInput13">Password</label>
+                  </div>
+
+
+
+
+                  <div class="text-center form-sm mt-2">
+                    <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                  </div>
+
+                </div>
+                <!--Footer-->
+              </div>
+              <!--/.Panel 8-->
             </div>
+
           </div>
-
-          <a href="#" data-toggle="modal" data-target="#myModal">Login</a>
-
         </div>
+        <!--/.Content-->
       </div>
     </div>
+    <!--Modal: Login / Register Form-->
 
   </div>
   {{{body}}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
 
 </body>
 
