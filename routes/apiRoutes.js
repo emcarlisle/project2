@@ -1,8 +1,18 @@
-const Router = require('express').Router;
-const exampleRoutes = require('./examples');
+const router = require('express').Router;
+//const exampleRoutes = require('./examples');
+const db = require('../models');
 
-const apiRoutes = Router();
+//const apiRoutes = Router();
 
-apiRoutes.use('/examples', exampleRoutes);
+// this route gets all posts
+router.get('/api/post', (req, res) => {
+    db.Post.findAll({}).then(post => {
+        res.json(post);
+    })
+})
 
-module.exports = apiRoutes;
+
+//apiRoutes.use('/examples', exampleRoutes);
+
+
+module.exports = router;
