@@ -1,9 +1,7 @@
 const router = require('express').Router;
 //const exampleRoutes = require('./examples');
-const db = require('../models');
-
-
-//const apiRoutes = Router();
+const postRoutes = require('./posts');
+router.use('/posts', postRoutes);
 
 // this route gets all posts
 router.get('/api/post', (req, res) => {
@@ -12,16 +10,10 @@ router.get('/api/post', (req, res) => {
     })
 })
 
-
 //apiRoutes.use('/examples', exampleRoutes);
 
-
-module.exports = router;
-
-
-const apiRoutes = Router();
 //Create a new user
-apiRoutes.post("/api/signup", (req, res) => {
+router.post("/signup", (req, res) => {
     db.User.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -29,12 +21,12 @@ apiRoutes.post("/api/signup", (req, res) => {
         username: req.body.username,
         password: req.body.password
     }).then(() => {
-        res.rederect(307, "/api/login");
+        res.redirect(307, "/api/login");
     });
 });
 
 //Login
-apiRoutes.post('/api/login', passport("local"), (req, res) => {
+router.post('/login', passport("local"), (req, res) => {
     if (!req.user) {
         res.json({});
     }
@@ -44,10 +36,4 @@ apiRoutes.post('/api/login', passport("local"), (req, res) => {
     })
 });
 
-//
-
-
-
-
-module.exports = apiRoutes;
-
+module.exports = router;
