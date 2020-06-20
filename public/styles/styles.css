@@ -44,13 +44,29 @@ h1 img {
 label {
   padding-right: 15%;
 }
-.btn-light {
-  margin: 3%;
-  float: right;
-}
 .modal-content{
   width: 85%!important;
 }
 .signUp {
   width: 100%;
+}
+.form-control {
+  text-align: center;
+}
+.btn-dark {
+  margin: 3%;
+  float: right;
+}
+a {
+  color: white;
+  font-weight: 6px;
+}
+.title {
+  color: white;
+  background-color: #71DA62;
+  margin: 10px;
+  box-shadow: 5px 5px skyblue;
+  text-shadow: 2px 2px 4px #000000;
+  width: 100%;
+  text-align: center;
 }
