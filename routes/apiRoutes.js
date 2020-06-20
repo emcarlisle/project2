@@ -1,6 +1,6 @@
 const Router = require('express').Router;
 const postRoutes = require('./posts');
-
+const db = require("../models")
 const apiRoutes = Router();
 
 apiRoutes.use('/posts', postRoutes);
@@ -13,8 +13,8 @@ apiRoutes.post("/signup", (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
-    }).then(() => {
-        res.redirect(307, "/login");
+    }).then((user) => {
+        res.json(user);
     });
 });
 
