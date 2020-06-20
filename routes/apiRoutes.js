@@ -32,7 +32,7 @@ apiRoutes.post('/login', (req, res) => {
     res.json({
         username: req.user.username,
         id: req.user.id
-    })
+    });
 });
 
 //logout
@@ -40,7 +40,7 @@ apiRoutes.get('/logout', function (req, res) {
     req.logout();
     //redirects user to the login page
     res.redirect("/login");
-})
+});
 
 //delete profile
 apiRoutes.delete('/deleteProfile/:id', function (req, res) {
@@ -50,7 +50,7 @@ apiRoutes.delete('/deleteProfile/:id', function (req, res) {
         }
     }).then(function(user) {
         res.json(user)
-    })
+    });
 });
 
 module.exports = apiRoutes;
