@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        len: [1],
-        unique: true,
+        len: [6],
         isEmail: true
       } 
     },
@@ -31,8 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        unique: true
+      len: [4]
       }
     },
 
@@ -44,6 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  User.prototype.validPassword = function(password) {
+    return password === this.password;
+  }
   
   User.associate = function(models) {
     User.hasMany(models.Post, {

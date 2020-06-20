@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
 const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const {
@@ -8,6 +9,7 @@ const {
 const morgan = require('morgan');
 const routes = require('./routes');
 const db = require('./models');
+const passport = require("./config/passport")
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,6 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));
+app.use(session({ secret: "session", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Handlebars
 app.engine(
@@ -31,7 +36,7 @@ app.set('view engine', 'handlebars');
 // Routes
 app.use(routes);
 
-const syncOptions = { force: false };
+const syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

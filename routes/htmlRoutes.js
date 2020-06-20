@@ -43,7 +43,7 @@ htmlRoutes.get('*', async (req, res) => {
 
 //==================passport html routes=========================================
 //Login Html route
-htmlRoutes.get('/', (req, res) => {
+htmlRoutes.get('/login', (req, res) => {
   if (req.user) {
     res.redirect("/profile");
   }

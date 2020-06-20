@@ -1,6 +1,7 @@
 const Router = require('express').Router;
 const postRoutes = require('./posts');
 const db = require('../models');
+const passport = require('passport');
 const apiRoutes = Router();
 
 apiRoutes.use('/posts', postRoutes);
@@ -14,33 +15,27 @@ apiRoutes.post("/signup", (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
-    }).then(() => {
-        req.login(user, function(err) {
-            if (err) {  
-                return next(err);
-            }
-            return res.redirect (`/profiles/${req.user.username}`);
-        });
+    }).then((user) => {
+        res.json(user);
     });
-});
+})
 
 //Login
-apiRoutes.post('/login', (req, res) => {
-    if (!req.user) {
-        res.json({});
-    }
-    res.json({
-        username: req.user.username,
-        id: req.user.id
+apiRoutes.post('/login', passport.authenticate('local'), function (req, res) {
+    db.User.findOne({
+        where: {
+            username: req.body.username
+        }
+    }).then(function (user) {
+        res.json(user);
     });
 });
 
-//logout
 apiRoutes.get('/logout', function (req, res) {
     req.logout();
     //redirects user to the login page
     res.redirect("/login");
-});
+})
 
 //delete profile
 apiRoutes.delete('/deleteProfile/:id', function (req, res) {
@@ -48,11 +43,9 @@ apiRoutes.delete('/deleteProfile/:id', function (req, res) {
         where: {
             id: req.params.id
         }
-    }).then(function(user) {
+    }).then(function (user) {
         res.json(user)
-    });
+    })
 });
 
 module.exports = apiRoutes;
-
-
