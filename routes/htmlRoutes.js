@@ -1,5 +1,6 @@
 const Router = require('express').Router;
 const db = require('../models');
+const path = require("path");
 
 const htmlRoutes = new Router();
 
@@ -39,5 +40,22 @@ htmlRoutes.get('/profile', async (req, res) => {
 htmlRoutes.get('*', async (req, res) => {
   res.render('404');
 });
+
+//==================passport html routes=========================================
+//Login Html route
+htmlRoutes.get('/', (req, res) => {
+  if (req.user) {
+    res.redirect("/profile");
+  }
+  sendFile(path.join(_dirname, "/signup"));
+})
+
+htmlRoutes.get('/', (req, res) => {
+  if (req.user) {
+    res.redirect("/profile");
+  }
+  //if user does not exist, send them back to the login page
+  res.sendFile(path.join(_dirname, "../login"));
+})
 
 module.exports = htmlRoutes;
