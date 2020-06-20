@@ -83,23 +83,21 @@ $(document).ready(function () {
       type: 'GET'
     });
 
-
-  //Save items to list
+  }
+    //Save items to list
   const handlePostSave = function () {
     const idToSave = $(this).child().attr('.savedItems');
     API.saveExample(idToSave).then(function () {
       refreshFreeItems();
     });
   };
-
   // delete button is clicked
   // Remove the example from the db and refresh the list
   const handlePostDelete = function () {
     const idToDelete = $(this).parent().attr('.savedItems');
-
     API.deleteExample(idToDelete).then(function () {
       refreshFreeItems();
     });
   };
-
 });
+

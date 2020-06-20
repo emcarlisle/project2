@@ -26,6 +26,7 @@ postRoutes
 
   .get(async (req, res) => {
     console.log(req.params.searchitem);
+    // use post id instead of title
     const dbPosts = await Post.findAll({ where: { title: {[Operator.like]:`%${req.params.searchitem}%`} } });
     console.log(dbPosts);
     res.json(dbPosts);

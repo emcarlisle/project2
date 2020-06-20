@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define(
-    'Post',
+    "Post",
     {
       title: {
         type: DataTypes.STRING,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       content: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [1]
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       photo: {
         type: DataTypes.STRING,
-        allowNull: false,
+        //allowNull: false,
         validate: {
           len: [1]
         }
@@ -28,12 +28,13 @@ module.exports = (sequelize, DataTypes) => {
 
     });
   Post.associate = function (models) {
-    // associations can be defined here
     Post.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false
+        allowNull: false,
+        onDelete: "cascade"
       }
-    })
-  }
+    });
+    
+  };
   return Post;
 };
