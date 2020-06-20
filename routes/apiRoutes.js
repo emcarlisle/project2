@@ -20,7 +20,7 @@ apiRoutes.post("/signup", (req, res) => {
                 return next(err);
             }
             return res.redirect (`/profiles/${req.user.username}`);
-        })
+        });
     });
 });
 
