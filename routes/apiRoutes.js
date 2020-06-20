@@ -18,7 +18,7 @@ apiRoutes.post("/signup", (req, res) => {
     }).then((user) => {
         res.json(user);
     });
-})
+});
 
 //Login
 apiRoutes.post('/login', passport.authenticate('local'), function (req, res) {
@@ -31,6 +31,7 @@ apiRoutes.post('/login', passport.authenticate('local'), function (req, res) {
     });
 });
 
+//logout
 apiRoutes.get('/logout', function (req, res) {
     req.logout();
     //redirects user to the login page
