@@ -1,6 +1,10 @@
 const Router = require('express').Router;
 const postRoutes = require('./posts');
+<<<<<<< HEAD
+const db = require("../models")
+=======
 const db = require('../models');
+>>>>>>> develop
 const apiRoutes = Router();
 
 apiRoutes.use('/posts', postRoutes);
@@ -14,6 +18,10 @@ apiRoutes.post("/signup", (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: req.body.password
+<<<<<<< HEAD
+    }).then((user) => {
+        res.json(user);
+=======
     }).then(() => {
         req.login(user, function(err) {
             if (err) {  
@@ -21,6 +29,7 @@ apiRoutes.post("/signup", (req, res) => {
             }
             return res.redirect (`/profiles/${req.user.username}`);
         });
+>>>>>>> develop
     });
 });
 
