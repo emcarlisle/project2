@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: [1],
+        unique: true,
         isEmail: true
       } 
     },
@@ -31,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1,10]
+        len: [1,10],
+        unique: true
       }
     },
 
@@ -39,14 +41,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 10]
+        len: [8, 16],
       }
     }
   });
   
+  User.associate = function(models) {
+    User.hasMany(models.Post, {
+      onDelete: "cascade"
+    });
+  }
   return User;
-  // Example.associate = function (_models) {
-  //   // associations can be defined here
-  // };
-  // return Example;
+ 
 };
