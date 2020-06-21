@@ -9,3 +9,5 @@ module.exports = function(req, res, next) {
     return res.redirect("/");
   };
   
+  //Middleware
+  //Express -> MIDDLEWARE - > WHATEVER SUPPOSED TO HAPPEN

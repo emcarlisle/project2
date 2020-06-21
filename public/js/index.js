@@ -1,22 +1,20 @@
 // Get references to page elements
 $(document).ready(function () {
-
   const $submitBtn = $('#submit');
   const $resultList = $('#resultList');
   const $savedList = $('#savedList');
 
   //click events
-  $(document).on('click', "#submit", function (event) {
+  $(document).on('click', '#submit', function (event) {
     event.preventDefault();
-    var searchItems = $("#searchItems").val().trim();
+    var searchItems = $('#searchItems').val().trim();
 
-    handlePostSearch(searchItems).then(function(response) {
-      console.log(response)
+    handlePostSearch(searchItems).then(function (response) {
+      console.log(response);
     });
   });
-  $(document).on('click', 'button.save', handlePostSave);
-  $(document).on('click', 'button.delete', handlePostDelete);
-
+  // $(document).on('click', 'button.save', handlePostSave);
+  // $(document).on('click', 'button.delete', handlePostDelete);
 
   // The API object contains methods for each kind of request we'll make
   const API = {
@@ -82,22 +80,48 @@ $(document).ready(function () {
       url: `api/post/search/${searchTopic}`,
       type: 'GET'
     });
-
-  }
-    //Save items to list
-  const handlePostSave = function () {
-    const idToSave = $(this).child().attr('.savedItems');
-    API.saveExample(idToSave).then(function () {
-      refreshFreeItems();
-    });
   };
+  //Save items to list
+  // const handlePostSave = function () {
+  //   const idToSave = $(this).child().attr('.savedItems');
+  //   API.saveExample(idToSave).then(function () {
+  //     refreshFreeItems();
+  //   });
+  // };
   // delete button is clicked
   // Remove the example from the db and refresh the list
-  const handlePostDelete = function () {
-    const idToDelete = $(this).parent().attr('.savedItems');
-    API.deleteExample(idToDelete).then(function () {
-      refreshFreeItems();
-    });
-  };
-});
+  // const handlePostDelete = function () {
+  //   const idToDelete = $(this).parent().attr('.savedItems');
+  //   API.deleteExample(idToDelete).then(function () {
+  //     refreshFreeItems();
+  //   });
+  // };
 
+  //AUTH STUFF
+  $(document).on('click', '.signup-btn', function (event) {
+    event.preventDefault();
+    const newUser = {
+      email: $('#signup-email-input').val().trim(),
+      password: $('#signup-password-input').val().trim()
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/auth/signup',
+      data: newUser
+    }).done(function () {
+      window.location.replace('/');
+    });
+  });
+
+    $(document).on('click', '.signout-btn', function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/auth/signout',
+    }).done(function () {
+      window.location.replace('/');
+    });
+  });
+});
