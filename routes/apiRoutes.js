@@ -1,7 +1,7 @@
 const Router = require('express').Router;
 const postRoutes = require('./posts');
 const db = require('../models');
-const passport = require('passport');
+const passport = require('../config/passport');
 const apiRoutes = Router();
 
 apiRoutes.use('/posts', postRoutes);

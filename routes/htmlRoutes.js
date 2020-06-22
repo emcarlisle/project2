@@ -1,6 +1,7 @@
 const Router = require('express').Router;
 const db = require('../models');
 const path = require("path");
+const authenticated = require('../config/Authenticate');
 
 const htmlRoutes = new Router();
 
@@ -47,15 +48,19 @@ htmlRoutes.get('/login', (req, res) => {
   if (req.user) {
     res.redirect("/profile");
   }
-  sendFile(path.join(_dirname, "/signup"));
+  sendFile(path.join(_dirname, "../signup.handlebars"));
 })
 
 htmlRoutes.get('/', (req, res) => {
   if (req.user) {
-    res.redirect("/profile");
+    res.redirect("/profile.handlebars");
   }
   //if user does not exist, send them back to the login page
   res.sendFile(path.join(_dirname, "../login"));
-})
+});
+
+htmlRoutes.get("/profile", authenticated, function(req, res) {
+  res.sendFile(path.join(_dirname, "../public/profile.handlebars"))
+});
 
 module.exports = htmlRoutes;

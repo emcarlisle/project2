@@ -5,7 +5,6 @@ const db = require("../models");
 
 //User Authentication
 
-
 passport.use(new LocalStrategy(
     function (username, password, done) {
         db.User.findOne({
