@@ -3,15 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define(
     'Post',
     {
-      title: {
-        type: DataTypes.STRING,
+      body: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           len: [1]
         }
       },
-      content: {
-        type: DataTypes.TEXT,
+      user_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           len: [1]
@@ -24,11 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     // A Post can't be created without a User due to the foreign key constraint
 
     Post.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      }
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE'
     });
-    
   };
+
+
   return Post;
 };
+    
