@@ -3,7 +3,7 @@ const authRoutes = Router();
 const passport = require('../../config/passport');
 const { User } = require('../../models');
 
-//Two Things.  Sign In.  Sign Up.  Sign Out.
+//Sign In.  Sign Up.  Sign Out.
 authRoutes.route('/signin').post(passport.authenticate('local'), (req, res) => {
   res.json({
     email: req.body.email,

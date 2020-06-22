@@ -18,20 +18,27 @@ $(document).ready(function () {
 
   // The API object contains methods for each kind of request we'll make
   const API = {
-    saveFreeItems: function (data) {
+    saveFreeItems: function (post) {
       return $.ajax({
         headers: {
-          'Content-Type': 'post/json'
+          'Content-Type': 'application/json'
         },
         type: 'POST',
         url: 'api/post',
-        data: JSON.stringify(data)
+        data: JSON.stringify(post)
       });
     },
 
     getFreeItems: function () {
       return $.ajax({
-        url: 'api/post',
+        url: 'api/posts',
+        type: 'GET'
+      });
+    },
+
+    getSearchItem: function () {
+      return $.ajax({
+        url: 'api/posts/' + id,
         type: 'GET'
       });
     },
