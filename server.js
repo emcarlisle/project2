@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const expressSession = require('express-session');
+const passport = require("./config/passport");
 const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const {
@@ -17,6 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));
+
+app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Handlebars
 app.engine(
@@ -40,7 +46,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(PORT, () => {
     console.log(
       '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
