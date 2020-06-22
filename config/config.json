@@ -3,7 +3,7 @@
     "username": "root",
 
     "password": "Untitled1229",
-    "database": "user_db",
+    "database": "socialApp_db",
 
     "host": "localhost",
     "dialect": "mysql"
