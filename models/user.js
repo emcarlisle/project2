@@ -28,15 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       } 
     },
     
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-      len: [4]
-      }
-    },
-
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -52,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   
   User.associate = function(models) {
     User.hasMany(models.Post, {
-      onDelete: "cascade"
+      onDelete: "CASCADE"
     });
   }
   return User;

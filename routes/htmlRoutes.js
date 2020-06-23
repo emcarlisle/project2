@@ -35,7 +35,7 @@ htmlRoutes.get('/signup', async (req, res) => {
 
 htmlRoutes.get('/profile', async (req, res) => {
   res.render('profile');
-})
+});
 
 // Render 404 page for any unmatched routes
 htmlRoutes.get('*', async (req, res) => {
@@ -49,7 +49,7 @@ htmlRoutes.get('/login', (req, res) => {
     res.redirect("/profile");
   }
   sendFile(path.join(_dirname, "../signup.handlebars"));
-})
+});
 
 htmlRoutes.get('/', (req, res) => {
   if (req.user) {
