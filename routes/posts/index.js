@@ -1,13 +1,14 @@
 const Router = require('express').Router;
 const { Post } = require('../../models');
+//const { User } = require('../../models');
 const postRoutes = Router();
-
 
 postRoutes
   .route('/')
 
   // GET route for getting all of the Posts
   .get(async (_req, res) => {
+    //const user_id = req.params.id;
     const dbPosts = await Post.findAll();
     res.json(dbPosts);
   })

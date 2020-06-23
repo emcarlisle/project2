@@ -37,4 +37,3 @@ authRoutes.route('/signout').post((req, res) => {
 
 module.exports = authRoutes;
 
-// added name to the User model object, may not work. TEST

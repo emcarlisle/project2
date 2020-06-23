@@ -6,7 +6,10 @@ var bcrypt = require('bcryptjs');
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     // The email cannot be null, and must be a proper email before creation
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -35,12 +38,17 @@ module.exports = function(sequelize, DataTypes) {
   // When a User is deleted, it deletes any associated Posts
 
   User.associate = function (models) {
+    //User.belongsTo(models.Post, {
+    //  allowNull: false
+    //})
     User.hasMany(models.Post, {
-      foreignKey: {
-        onDelete: 'CASCADE'
-      }
-      
+      onDelete: "CASCADE"
     });
+      
+      
+      
+      
+      
   };
 
   return User;
