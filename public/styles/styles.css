@@ -29,8 +29,8 @@ h1 img {
   border-width: 1px;
 }
 .card {
-  width: 21%!important;
-  float: right;
+  /* width: 21%!important; */
+  /* float: right; */
   margin: 10px;
   font-size: 10px;
 }
@@ -57,10 +57,11 @@ label {
   margin: 1%;
   float: right;
 }
-a {
-  color: white;
-  font-weight: 6px;
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  background-color: lightblue;
+  color: black;
 }
+
 .title {
   color: white;
   background-color: #71DA62;
@@ -80,3 +81,8 @@ a {
   text-align: center;
   font-size: 20px;
 }
+
+
+
+
+
