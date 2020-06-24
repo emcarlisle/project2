@@ -5,36 +5,30 @@ const authenticated = require('../config/Authenticate');
 
 const htmlRoutes = new Router();
 
+
+// HTML Route to index (render info on loading)
 htmlRoutes.get('/', async (req, res) => {
-  const dbPosts = await db.Post.findAll({});
+  const dbPosts = await db.Post.findAll();
 
   res.render('index', {
     msg: 'Welcome!',
-    post: dbPosts
+    posts: dbPosts
   });
 });
 
-// Load example page and pass in an example by id
-htmlRoutes.get('/example/:id', async (req, res) => {
+//Render Post page with content by id
+htmlRoutes.get('/post/:id', async (req, res) => {
   const options = {
     where: {
       id: req.params.id
     }
   };
 
-  const dbExample = await db.Example.findOne(options);
+  const dbPost = await db.Post.findOne(options);
 
-  res.render('example', {
-    example: dbExample
+  res.render('post', {
+    post: dbPost
   });
-});
-
-htmlRoutes.get('/signup', async (req, res) => {
-  res.render('signup');
-});
-
-htmlRoutes.get('/profile', async (req, res) => {
-  res.render('profile');
 });
 
 // Render 404 page for any unmatched routes
@@ -43,24 +37,9 @@ htmlRoutes.get('*', async (req, res) => {
 });
 
 //==================passport html routes=========================================
-//Login Html route
-htmlRoutes.get('/login', (req, res) => {
-  if (req.user) {
-    res.redirect("/profile");
-  }
-  sendFile(path.join(_dirname, "../signup.handlebars"));
-});
-
-htmlRoutes.get('/', (req, res) => {
-  if (req.user) {
-    res.redirect("/profile.handlebars");
-  }
-  //if user does not exist, send them back to the login page
-  res.sendFile(path.join(_dirname, "../login"));
-});
 
 htmlRoutes.get("/profile", authenticated, function(req, res) {
-  res.sendFile(path.join(_dirname, "../public/profile.handlebars"))
+  res.sendFile(path.join(_dirname, "../views/profile.handlebars"));
 });
 
 module.exports = htmlRoutes;

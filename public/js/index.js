@@ -1,100 +1,134 @@
 // Get references to page elements
-const $ = window.$;
-const $exampleText = $('#example-text');
-const $exampleDescription = $('#example-description');
-const $submitBtn = $('#submit');
-const $exampleList = $('#example-list');
+$(document).ready(function () {
+  const $submitBtn = $('#submit');
+  const $resultList = $('#resultList');
+  const $savedList = $('#savedList');
 
-// The API object contains methods for each kind of request we'll make
-const API = {
-  saveExample: function (example) {
-    return $.ajax({
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      type: 'POST',
-      url: 'api/examples',
-      data: JSON.stringify(example)
+  //click events
+  $(document).on('click', '#submit', function (event) {
+    event.preventDefault();
+    var searchItems = $('#searchItems').val().trim();
+
+    handlePostSearch(searchItems).then(function (response) {
+      console.log(response);
     });
-  },
-  getExamples: function () {
-    return $.ajax({
-      url: 'api/examples',
-      type: 'GET'
-    });
-  },
-  deleteExample: function (id) {
-    return $.ajax({
-      url: 'api/examples/' + id,
-      type: 'DELETE'
-    });
-  }
-};
-
-// refreshExamples gets new examples from the db and repopulates the list
-const refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    const $examples = data.map(function (example) {
-      const $a = $('<a>')
-        .text(example.text)
-        .attr('href', '/example/' + example.id);
-
-      const $li = $('<li>')
-        .attr({
-          class: 'list-group-item',
-          'data-id': example.id
-        })
-        .append($a);
-
-      const $button = $('<button>')
-        .addClass('btn btn-danger float-right delete')
-        .text('ｘ');
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
   });
-};
+  // $(document).on('click', 'button.save', handlePostSave);
+  // $(document).on('click', 'button.delete', handlePostDelete);
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-const handleFormSubmit = function (event) {
-  event.preventDefault();
+  // The API object contains methods for each kind of request we'll make
+  const API = {
+    saveFreeItems: function (post) {
+      return $.ajax({
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        type: 'POST',
+        url: 'api/post',
+        data: JSON.stringify(post)
+      });
+    },
 
-  const example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    getFreeItems: function () {
+      return $.ajax({
+        url: 'api/posts',
+        type: 'GET'
+      });
+    },
+
+    getSearchItem: function () {
+      return $.ajax({
+        url: 'api/posts/' + id,
+        type: 'GET'
+      });
+    },
+
+    deleteFreeItems: function (id) {
+      return $.ajax({
+        url: 'api/post/' + id,
+        type: 'DELETE'
+      });
+    }
   };
 
-  if (!(example.text && example.description)) {
-    window.alert('You must enter an example text and description!');
-    return;
-  }
+  // refresh gets new items from the db and repopulates the list - STILL NEEDS CHANGING
+  const refreshFreeItems = function () {
+    API.getFreeItems().then(function (data) {
+      const $examples = data.map(function (example) {
+        const $a = $('<a>')
+          .text(example.text)
+          .attr('href', '/example/' + example.id);
 
-  API.saveExample(example).then(function () {
-    refreshExamples();
+        const $li = $('<li>')
+          .attr({
+            class: 'list-group-item',
+            'data-id': example.id
+          })
+          .append($a);
+
+        const $button = $('<button>')
+          .addClass('btn btn-danger float-right delete')
+          .text('ｘ');
+
+        $li.append($button);
+
+        return $li;
+      });
+
+      $resultList.empty();
+      $resultList.append($examples);
+    });
+  };
+
+  // submit a new free item
+  // Save the new free item to the db and refresh the list
+  const handlePostSearch = function (searchTopic) {
+    return $.ajax({
+      url: `api/post/search/${searchTopic}`,
+      type: 'GET'
+    });
+  };
+  //Save items to list
+  // const handlePostSave = function () {
+  //   const idToSave = $(this).child().attr('.savedItems');
+  //   API.saveExample(idToSave).then(function () {
+  //     refreshFreeItems();
+  //   });
+  // };
+  // delete button is clicked
+  // Remove the example from the db and refresh the list
+  // const handlePostDelete = function () {
+  //   const idToDelete = $(this).parent().attr('.savedItems');
+  //   API.deleteExample(idToDelete).then(function () {
+  //     refreshFreeItems();
+  //   });
+  // };
+
+  //AUTH STUFF
+  $(document).on('click', '.signup-btn', function (event) {
+    event.preventDefault();
+    const newUser = {
+      email: $('#signup-email-input').val().trim(),
+      password: $('#signup-password-input').val().trim()
+    };
+
+    $.ajax({
+      type: 'POST',
+      url: '/api/auth/signup',
+      data: newUser
+    }).done(function () {
+      window.location.replace('/');
+    });
   });
 
-  $exampleText.val('');
-  $exampleDescription.val('');
-};
+    $(document).on('click', '.signout-btn', function (event) {
+    event.preventDefault();
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-const handleDeleteBtnClick = function () {
-  const idToDelete = $(this)
-    .parent()
-    .attr('data-id');
-
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
+    $.ajax({
+      type: 'POST',
+      url: '/api/auth/signout',
+    }).done(function () {
+      window.location.replace('/');
+    });
   });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on('click', handleFormSubmit);
-$exampleList.on('click', '.delete', handleDeleteBtnClick);
+});
