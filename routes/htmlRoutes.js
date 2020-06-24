@@ -38,8 +38,8 @@ htmlRoutes.get('*', async (req, res) => {
 
 //==================passport html routes=========================================
 
-htmlRoutes.get("/profile", authenticated, function(req, res) {
-  res.sendFile(path.join(_dirname, "../views/profile.handlebars"));
+htmlRoutes.get("/home", authenticated, function(req, res) {
+  res.sendFile(path.join(_dirname, "../views/home.handlebars"));
 });
 
 module.exports = htmlRoutes;
