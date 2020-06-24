@@ -1,90 +1,31 @@
 <div class="row">
-        <section class="col-5 offset-1">
-                <div class="row">
-                        <h2 class="title">Trash</h2>
-                        <h3 class="subTitle">Your trash that will become someone else's treasure</h3>
-                        <div class="row col-4 offset-8">
-                                <button class="btn btn-primary"><i class="fa fa-edit"></i>Post New Item</button>
-                        </div>
-
-                </div>
-
-        </section>
-        <section class="col-5">
-                <div class="row">
-                        <h2 class="title">Treasure</h2>
-                        <h3 class="subTitle">Someone else's trash that you are interested in</h3>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="...">
-                        <div class="card-body">
-                                <p class="card-text">Simple Placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple Placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-
-                        </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                        <img src="https://oie.msu.edu/_assets/images/placeholder/placeholder-200x200.jpg"
-                                class="card-img-top" alt="example">
-                        <div class="card-body">
-                                <p class="card-text">Simple placeholder</p>
-                                <div class="savedItems"><button id="delete" class="btn-danger">Delete</button></div>
-                        </div>
-                </div>
-        </section>
+  <form class="clearfix mb-4 col-4 offset-4 text-center" action="POST">
+    <div class="form-group">
+      <label for="post-items"></label>
+      <input type="text" id="postMessage" class="form-control" aria-describedby="search-items"
+        placeholder="Post A Message">
+    </div>
+    <button id="submit" class="btn btn-primary">POST</button>
+  </form>
 </div>
+<div class="row">
+  <section class="col-6 offset-3">
+    <div class="row">
+      <h2 class="title">Your Messages:</h2>
+    </div>
+  </section>
+
+</div>
+{{!-- <ul id="example-list" class="list-group">
+        {{#each examples}}
+        <li data-id="{{this.id}}" class="list-group-item">
+          <a href="example/{{this.id}}">{{this.text}}</a>
+          <button class="btn btn-danger float-right delete">ｘ</button>
+        </li>
+        {{/each}}
+      </ul> --}}
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>

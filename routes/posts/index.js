@@ -4,7 +4,7 @@ const { Post } = require('../../models');
 const postRoutes = Router();
 
 postRoutes
-  .route('/')
+  .route('/posts')
 
   // GET route for getting all of the Posts
   .get(async (_req, res) => {
@@ -22,7 +22,7 @@ postRoutes
   
   // DELETE route for deleting a Post by id
 postRoutes
-  .route('/:id')
+  .route('/posts/:id')
 
   .put(async (_req, res) => {
     res.status(501).end();
