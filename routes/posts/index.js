@@ -1,44 +1,29 @@
 const Router = require('express').Router;
 const { Post } = require('../../models');
-
-const Sequelize = require("sequelize");
-const Operator = Sequelize.Op;
-
+//const { User } = require('../../models');
 const postRoutes = Router();
 
-// Get all Posts
 postRoutes
   .route('/')
 
+  // GET route for getting all of the Posts
   .get(async (_req, res) => {
+    //const user_id = req.params.id;
     const dbPosts = await Post.findAll();
     res.json(dbPosts);
   })
 
+  // POST route for creating a new Post
   .post(async (req, res) => {
+    console.log(req.body)
     const dbPost = await Post.create(req.body);
     res.json(dbPost);
-  });
-
-//Search route
-postRoutes
-  .route('/search/:searchitem')
-
-  .get(async (req, res) => {
-    console.log(req.params.searchitem);
-    const dbPosts = await Post.findAll({ where: { title: {[Operator.like]:`%${req.params.searchitem}%`} } });
-    console.log(dbPosts);
-    res.json(dbPosts);
   })
-
-  .post(async (req, res) => {
-    const dbPost = await Post.create(req.body);
-    res.json(dbPost);
-  });
-
-// Delete an Post by id
+  
+  // DELETE route for deleting a Post by id
 postRoutes
   .route('/:id')
+
   .put(async (_req, res) => {
     res.status(501).end();
   })
@@ -48,8 +33,17 @@ postRoutes
         id: req.params.id
       }
     };
-    const dbPost = await Post.destroy(options);
-    res.json(dbPost);
+    const deletedPost = await Post.destroy(options);
+    res.json(deletedPost);
   });
 
 module.exports = postRoutes;
+
+
+
+
+
+
+
+
+

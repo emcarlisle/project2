@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS user_db;
+DROP DATABASE IF EXISTS socialApp_db;
 
-CREATE DATABASE user_db;
+CREATE DATABASE socialApp_db;
 
-USE user_db;
+USE socialApp_db;
