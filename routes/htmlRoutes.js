@@ -1,6 +1,7 @@
 const Router = require('express').Router;
 const db = require('../models');
-//const path = require("path");
+const path = require("path");
+const authenticated = require('../config/Authenticate');
 
 const htmlRoutes = new Router();
 
@@ -30,35 +31,15 @@ htmlRoutes.get('/post/:id', async (req, res) => {
   });
 });
 
-
-htmlRoutes.get('/signup', async (req, res) => {
-  res.render('signup');
-});
-
-htmlRoutes.get('/profile', async (req, res) => {
-  res.render('profile');
-})
-
 // Render 404 page for any unmatched routes
 htmlRoutes.get('*', async (req, res) => {
   res.render('404');
 });
 
 //==================passport html routes=========================================
-//Login Html route
-//htmlRoutes.get('/', (req, res) => {
-//  if (req.user) {
-//    res.redirect("/profile");
-//  }
-//  sendFile(path.join(_dirname, "/signup"));
-//})
-//
-//htmlRoutes.get('/', (req, res) => {
-//  if (req.user) {
-//    res.redirect("/profile");
-//  }
-//  //if user does not exist, send them back to the login page
-//  res.sendFile(path.join(_dirname, "../login"));
-//})
+
+htmlRoutes.get("/home", authenticated, function(req, res) {
+  res.sendFile(path.join(_dirname, "../views/home.handlebars"));
+});
 
 module.exports = htmlRoutes;

@@ -9,6 +9,8 @@ authRoutes.route('/signin').post(passport.authenticate('local'), (req, res) => {
     name: req.body.name,
     email: req.body.email,
     id: req.body.id
+  }).then(() => {
+    res.redirect('/index.handlebars');
   });
 });
 
@@ -20,7 +22,7 @@ authRoutes.route('/signup').post((req, res) => {
     password: req.body.password
   })
     .then(() => {
-      res.redirect('/');
+      res.redirect('/index.handlebars');
     })
     .catch((err) => {
       res.status(401).json({ message: err });
@@ -32,7 +34,7 @@ authRoutes.route('/signout').post((req, res) => {
     res.end();
   }
 
-  res.redirect('/signup');
+  res.redirect('/signup.handlebars');
 });
 
 module.exports = authRoutes;
