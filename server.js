@@ -23,7 +23,7 @@ app.use(morgan('dev'));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
+//app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
