@@ -8,65 +8,67 @@ const htmlRoutes = new Router();
 // Route to index (sign-in page) --must be logged in, will direct to sign up page
 htmlRoutes.get('/', async (req, res) => {
   if (req.user) {
-    res.redirect('profile');
+    res.redirect('/homepage')
   }
   res.render('index');
 });
 
-// htmlRoutes.get('/signin', async (req, res) => {
-//   res.render('index');
-// });
-
 // Route to signup page
-htmlRoutes.get('/signUp', async (req, res) => {
+htmlRoutes.get('/signup', async (req, res) => {
   res.render('signUp');
 });
 
-// Route to profile page
-htmlRoutes.get('/posts', isAuthenticated, async (req, res) => {
+htmlRoutes.get('/signin', async (req, res) => {
+  res.render('profile')
+})
+
+// route to profile
+htmlRoutes.get('/homepage', isAuthenticated, async (req, res) => {
+  const posts = await db.Post.findAll({
+    attributes: ['id', 'body'],
+    where: {
+      UserId: req.user.id
+    }
+  });
+  console.log(posts)
+  res.render('profile', {
+    Post: posts
+  });
+  
+});
+// Route to create a post  page
+htmlRoutes.get('/posts/create', isAuthenticated, async (req, res) => {
   //if user is logged in let them access otherwise send them to login page
-  res.render('profile');
+  res.render('createPost');
 });
 
-// Route to profile page, 
-// htmlRoutes.get('/users', isAuthenticated, async (req, res) => {
-//   const posts = await db.Post.findAll({
-//     attributes: ['id'],
-//     where: {
-//       UserId: req.user.id
-//     }
-//   });
-//   console.log(posts)
-//   res.render('profile', {
-//     Post: posts
-//   });
-// });
 
-//for each created Post
+
+// Route to get post by id
 htmlRoutes.get('/posts/:id', async (req, res) => {
   // getting posts from database
-  const options = {
+  const posts = {
     where: {
       id: req.params.id
     }
   };
 
-  const dbPost = await db.Post.findOne(options);
+  const dbPost = await db.Post.findOne({
+    where: {
+      PostId: posts.id
+    }
+  });
   res.render('profile', {
     Post: dbPost
   });
 });
 
 
-htmlRoutes.get('/logout', function (req, res) {
+htmlRoutes.get('/signout', function (req, res) {
   req.logout();
   res.redirect('/');
 });
 
-htmlRoutes.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
-});
 
 // Render 404 page for any unmatched routes
 htmlRoutes.get('*', async (req, res) => {
