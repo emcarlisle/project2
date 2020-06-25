@@ -10,20 +10,24 @@
   <title>SocialApp</title>
 </head>
 
-<body>
+<body><header class="header">
   <div class="wrapper">
-    <header class="header">
-      <h1>Social App</h1>
-    </header>
-
-    <div class="user-control">
-      <p class="logged-as">Logged in as <a href="/posts" class="user-name"></a></p>
-      <button onclick="window.location.href='/signout'" id="logout-Btn" class="actionBtn">Log Out</button>
-    </div>
-
-    {{{body}}}
     
+      <div class="jumbotron">
+        <h1 class="col-4 offset-4">
+          <img src="https://i.imgur.com/TeXj3zX.jpg"></h1>
+      </div>
+      </h1>>
   </div>
+  </header>
+
+  <div class="user-control">
+    <p class="logged-as">Logged in as <a href="/posts" class="user-name"></a></p>
+    <button onclick="window.location.href='/signout'" id="logout-Btn" class="actionBtn">Log Out</button>
+  </div>
+
+  {{{body}}}
+
 </body>
 
 <script src="/js/index.js"></script>
