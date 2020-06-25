@@ -45,10 +45,6 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "CASCADE"
     });
       
-      
-      
-      
-      
   };
 
   return User;

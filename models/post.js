@@ -21,12 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     });
     // We're saying that a Post should belong to a User
     // A Post can't be created without a User due to the foreign key constraint
-    
-
-
         
   };
-
 
   return Post;
 };
