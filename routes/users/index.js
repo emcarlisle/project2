@@ -4,30 +4,15 @@ const { Post } = require('../../models');
 const userRoutes = Router();
 
 // GET route to find all Users and their Posts
-userRoutes.route('/').get(async (_req, res) => {
+userRoutes.route('/users').get(async (_req, res) => {
   const dbUsers = await User.findAll({
     include: [Post]
   });
   res.json(dbUsers);
 });
 
-
-// GET route to get a User by ID
-//userRoutes.route('/:id').get(async (_req, res) => {
-//  const dbUser = await User.findOne({
-//    where: {
-//      id: _req.params.id
-//    },
-//    include: [Post]
-//  });
-//  res.json(dbUser);
-//});
-
-// DELETE route for deleting a User by Id
-//(which should delete posts associated with that User's ID)
-
 userRoutes
-  .route('/:id')
+  .route('/users/:id')
   .put(async (_req, res) => {
     res.status(501).end();
   })
@@ -36,9 +21,29 @@ userRoutes
       where: {
         id: req.params.id
       }
-      };
-      const dbUser = User.destroy(options);
-      res.json(dbUser);
+    };
+    const dbUser = User.destroy(options);
+    res.json(dbUser);
   });
+
+userRoutes
+  .route('/user_data')
+
+  .get(async (req, res) => {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  })
+
+
+
+
 
 module.exports = userRoutes;

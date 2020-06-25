@@ -105,30 +105,30 @@ $(document).ready(function () {
   // };
 
   //AUTH STUFF
-  $(document).on('click', '.signup-btn', function (event) {
-    event.preventDefault();
-    const newUser = {
-      email: $('#signup-email-input').val().trim(),
-      password: $('#signup-password-input').val().trim()
-    };
+  // $(document).on('click', '.signup-btn', function (event) {
+  //   event.preventDefault();
+  //   const newUser = {
+  //     email: $('#signup-email-input').val().trim(),
+  //     password: $('#signup-password-input').val().trim()
+  //   };
 
-    $.ajax({
-      type: 'POST',
-      url: '/api/auth/signup',
-      data: newUser
-    }).done(function () {
-      window.location.replace('/');
-    });
-  });
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '/api/auth/signup',
+  //     data: newUser
+  //   }).done(function () {
+  //     window.location.replace('/');
+  //   });
+  // });
 
-    $(document).on('click', '.signout-btn', function (event) {
-    event.preventDefault();
+  //   $(document).on('click', '.signout-btn', function (event) {
+  //   event.preventDefault();
 
-    $.ajax({
-      type: 'POST',
-      url: '/api/auth/signout',
-    }).done(function () {
-      window.location.replace('/');
-    });
-  });
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '/api/auth/signout',
+  //   }).done(function () {
+  //     window.location.replace('/');
+  //   });
+  // });
 });
