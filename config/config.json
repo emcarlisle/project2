@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "this.password",
+    "password": "password",
     "database": "socialApp_db",
     "host": "localhost",
     "dialect": "mysql"
