@@ -1,115 +1,35 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <link rel="icon" href="/favicon.ico" />
+  <script src="https://code.jquery.com/jquery.js"></script>
   <title>SocialApp</title>
 </head>
 
-<body>
-  <div id="home">
-    <header class="container">
-      <div class="row">
-        <div class="col-12 mb-5">
-          <h1>SocialApp</h1>
-          <button class="btn btn-dark"><a href="/signup">Register</a></button>
-          <button class="btn btn-dark signout-btn">Sign Out</button>
-          <button class="btn btn-dark"><a href="#" data-toggle="modal" data-target="#myModal">Login</a></button>
-          </h1>
-
-        </div>
+<body><header class="header">
+  <div class="wrapper">
+    
+      <div class="jumbotron">
+        <h1 class="col-4 offset-4">
+          <img src="https://i.imgur.com/TeXj3zX.jpg"></h1>
       </div>
-    </header>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog cascading-modal" role="document">
-        <div class="modal-content"
-          style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');">
-          <div class="modal-c-tabs">
-            <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
-                  Login</a>
-              </li>
-
-              {{!-- DO NOT DELETE!!  WILL IMPLEMENT AT A LATER TIME (from Kramer) --}}
-
-              {{!-- <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
-                  Register</a>
-              </li> --}}
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
-                <div class="modal-body mb-5">
-                  <div class="md-form form-sm mt-5 pl-3 pr-3">
-                    <i class="fa fa-envelope prefix"></i>
-                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput10">Email</label>
-                  </div>
-                  <div class="md-form form-sm mt-1 pl-3 pr-3">
-                    <i class="fa fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput11">Password</label>
-                  </div>
-                  <div class="text-center mt-2 mb-5">
-                    <button class="btn btn-info">LOG IN <i class="fas fa-sign-in ml-1"></i></button>
-                  </div>
-                </div>
-              </div>
-
-              {{!-- DO NOT DELETE!!  WILL IMPLEMENT AT A LATER TIME (from Kramer) --}}
-
-              {{!-- <div class="tab-pane fade" id="panel8" role="tabpanel">
-                <div class="modal-body">
-                  <div class="md-form form-sm mb-2">
-                    <i class="fas fa-envelope prefix"></i>
-                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">First Name</label>
-                  </div>
-                  <div class="md-form form-sm mb-2">
-                    <i class="fas fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput13">Last Name</label>
-                  </div>
-                  <div class="md-form form-sm mb-2">
-                    <i class="fas fa-envelope prefix"></i>
-                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput12">Username</label>
-                  </div>
-                  <div class="md-form form-sm mb-2">
-                    <i class="fas fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput13">Email</label>
-                  </div>
-                  <div class="md-form form-sm mb-5">
-                    <i class="fas fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                    <label data-error="wrong" data-success="right" for="modalLRInput13">Password</label>
-                  </div>
-                  <div class="text-center form-sm mt-2">
-                    <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
-                  </div>
-                </div>
-              </div> --}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+      </h1>>
   </div>
+  </header>
+
+  <div class="user-control">
+    <p class="logged-as">Logged in as <a href="/posts" class="user-name"></a></p>
+    <button onclick="window.location.href='/signout'" id="logout-Btn" class="actionBtn">Log Out</button>
+  </div>
+
   {{{body}}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
-  <script src="/js/index.js"></script>
+
 </body>
 
-</html>
+<script src="/js/index.js"></script>
 
+</html>
