@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));
 
-app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
+// app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 

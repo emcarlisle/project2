@@ -35,8 +35,8 @@ htmlRoutes.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
-htmlRoutes.get('/profile', async (req, res) => {
-  res.render('profile');
+htmlRoutes.get('/home', async (req, res) => {
+  res.render('home');
 })
 
 // Render 404 page for any unmatched routes
