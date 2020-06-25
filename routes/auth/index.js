@@ -10,7 +10,7 @@ authRoutes.route('/signin').post(passport.authenticate('local'), (req, res) => {
     email: req.body.email,
     id: req.body.id
   }).then(() => {
-    res.redirect('/index.handlebars');
+    res.redirect('/');
   });
 });
 
