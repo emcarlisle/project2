@@ -5,44 +5,71 @@ const path = require("path");
 const authenticated = require('../config/Authenticate');
 
 // Requiring our custom middleware for checking if a user is logged in
-
+// const isAuthenticated = require("../config/middleware/isAuthenticated");
 const htmlRoutes = new Router();
 
 // Route to index (sign-in page) --must be logged in, will direct to sign up page
 htmlRoutes.get('/', async (req, res) => {
   if (req.user) {
-    res.redirect('/profile');
+    res.redirect('/homepage')
   }
   //res.render('index');
 });
 
 // Route to signup page
-htmlRoutes.get('/signUp', async (req, res) => {
+htmlRoutes.get('/signup', async (req, res) => {
   res.render('signUp');
 });
 
-// Route to profile page
-htmlRoutes.get('/posts', authenticated, async (req, res) => {
+htmlRoutes.get('/signin', async (req, res) => {
+  res.render('profile')
+})
+
+// route to profile
+htmlRoutes.get('/homepage', async (req, res) => {
+  const posts = await db.Post.findAll({
+    attributes: ['id', 'body'],
+    where: {
+      UserId: req.user.id
+    }
+  });
+  console.log(posts)
+  res.render('profile', {
+    Post: posts
+  });
+  
+});
+// Route to create a post  page
+htmlRoutes.get('/posts/create', async (req, res) => {
   //if user is logged in let them access otherwise send them to login page
-  res.send('posts');
+  res.render('createPost');
 });
 
-//for each created Post
+
+
+// Route to get post by id
 htmlRoutes.get('/posts/:id', async (req, res) => {
   // getting posts from database
-  const options = {
+  const posts = {
     where: {
       id: req.params.id
     }
   };
 
-  const dbPost = await db.Post.findOne(options);
+  const dbPost = await db.Post.findOne({
+    where: {
+      PostId: posts.id
+    }
+  });
   res.render('profile', {
     Post: dbPost
   });
 });
 
-htmlRoutes.get('/logout', function (req, res) {
+
+
+htmlRoutes.get('/signout', function (req, res) {
+
   req.logout();
   res.redirect('/');
 });
@@ -107,7 +134,7 @@ htmlRoutes.get('*', async (req, res) => {
 
 //==================passport html routes=========================================
 
-htmlRoutes.get("/home", authenticated, function(req, res) {
+htmlRoutes.get("/home", function(req, res) {
   res.sendFile(path.join(_dirname, "../views/home.handlebars"));
 });
 

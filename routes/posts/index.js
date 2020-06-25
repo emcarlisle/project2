@@ -4,27 +4,38 @@ const { Post } = require('../../models');
 const postRoutes = Router();
 
 postRoutes
-  .route('/posts')
+  .route('/posts/:id')
 
-  // GET route for getting all of the Posts
-  .get(async (_req, res) => {
+  // GET route for getting posts
+  .get(async (req, res) => {
     //const user_id = req.params.id;
-    const dbPosts = await Post.findAll();
+    const dbPosts = await Post.findAll({
+      where: {
+        PostId: req.params.PostId
+      },
+      include: [Post]
+    });
     res.json(dbPosts);
   })
 
-  // POST route for creating a new Post
+
+postRoutes
+  .route('/posts')
   .post(async (req, res) => {
-    console.log(req.body)
-    const dbPost = await Post.create(req.body);
+    //console.log(req)
+    const dbPost = await Post.create({
+      body: req.body.body
+      //UserId: req.user.id
+    });
     res.json(dbPost);
+    console.log(dbPost);
   })
   
   // DELETE route for deleting a Post by id
 postRoutes
   .route('/posts/:id')
 
-  .put(async (_req, res) => {
+  .put(async (req, res) => {
     res.status(501).end();
   })
   .delete(async (req, res) => {
@@ -36,6 +47,18 @@ postRoutes
     const deletedPost = await Post.destroy(options);
     res.json(deletedPost);
   });
+
+
+
+// POST route to make a new Post
+// postRoutes
+//   .route('/newPost')
+//   .post(async (req, res) => {
+//     console.log(req.body)
+//     const dbPosts = await Post.create(req.body);
+//     res.json(dbPosts);
+//   });
+
 
 module.exports = postRoutes;
 
