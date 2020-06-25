@@ -11,6 +11,7 @@ const morgan = require('morgan');
 const routes = require('./routes');
 const db = require('./models');
 
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -19,8 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(morgan('dev'));
-
-app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 

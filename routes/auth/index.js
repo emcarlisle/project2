@@ -4,6 +4,7 @@ const passport = require('../../config/passport');
 const { User } = require('../../models');
 
 //Sign In.  Sign Up.  Sign Out.
+
 authRoutes.post('/signin', passport.authenticate('local'), (req, res) => {
   res.json({
     //name: req.user.name,
@@ -19,7 +20,9 @@ authRoutes.post('/signup', (req, res) => {
     password: req.body.password
   })
     .then(() => {
+
       res.end();
+    
     })
     .catch((err) => {
       res.status(401).json({ message: err });
@@ -40,6 +43,7 @@ authRoutes.get('/user_data', (req, res) => {
   }
 });
 
+
 authRoutes.delete('/posts/delete/:id', async (req, res) => {
   const options = {
       where: {
@@ -48,6 +52,7 @@ authRoutes.delete('/posts/delete/:id', async (req, res) => {
   };
   const dbExample = await db.Surveys.destroy(options);
   res.json(dbExample);
+
 });
 
 module.exports = authRoutes;

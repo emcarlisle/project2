@@ -1,6 +1,9 @@
 const Router = require('express').Router;
 const db = require('../models');
 
+//const path = require("path");
+//const authenticated = require('../config/Authenticate');
+
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const htmlRoutes = new Router();
@@ -64,7 +67,9 @@ htmlRoutes.get('/posts/:id', async (req, res) => {
 });
 
 
+
 htmlRoutes.get('/signout', function (req, res) {
+
   req.logout();
   res.redirect('/');
 });
@@ -128,20 +133,9 @@ htmlRoutes.get('*', async (req, res) => {
 // });
 
 //==================passport html routes=========================================
-//Login Html route
-//htmlRoutes.get('/', (req, res) => {
-//  if (req.user) {
-//    res.redirect("/profile");
-//  }
-//  sendFile(path.join(_dirname, "/signup"));
-//})
-//
-//htmlRoutes.get('/', (req, res) => {
-//  if (req.user) {
-//    res.redirect("/profile");
-//  }
-//  //if user does not exist, send them back to the login page
-//  res.sendFile(path.join(_dirname, "../login"));
-//})
+
+htmlRoutes.get("/home", authenticated, function(req, res) {
+  res.sendFile(path.join(_dirname, "../views/home.handlebars"));
+});
 
 module.exports = htmlRoutes;
