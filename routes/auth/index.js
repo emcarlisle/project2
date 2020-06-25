@@ -4,50 +4,55 @@ const passport = require('../../config/passport');
 const { User } = require('../../models');
 
 //Sign In.  Sign Up.  Sign Out.
-authRoutes.route('/signin').post(passport.authenticate('local'), async (req, res) => {
-  const id = {
-    where: {
-      email: req.body.email
-    }
-  }
-  const dbUsers = await User.findOne(id);
-  res.json(dbUsers);
 
-//authRoutes.route('/signin').post(passport.authenticate('local'), (req, res) => {
-//  res.json({
-//    name: req.body.name,
-//    email: req.body.email,
-//    id: req.body.id
-//  }).then(() => {
-//    res.redirect('/index.handlebars');
-//  });
-
+authRoutes.post('/signin', passport.authenticate('local'), (req, res) => {
+  res.json({
+    //name: req.user.name,
+    email: req.user.email,
+    password: req.user.password
+  });
 });
 
-authRoutes.route('/signup').post(async (req, res) => {
-  console.log(req.body);
+authRoutes.post('/signup', (req, res) => {
   User.create({
-    name: req.body.name,
+    //name: req.body.name,
     email: req.body.email,
     password: req.body.password
   })
     .then(() => {
-      res.redirect('/profile');
 
-//      res.redirect('/index.handlebars');
-
+      res.end();
+    
     })
     .catch((err) => {
       res.status(401).json({ message: err });
     });
 });
 
-authRoutes.route('/signout').post((req, res) => {
+authRoutes.get('/user_data', (req, res) => {
   if (!req.user) {
-    res.end();
+    // The user is not logged in, send back an empty object
+    res.json({});
+  } else {
+    // Otherwise send back the user's email and id
+    res.json({
+      //name: req.user.name,
+      email: req.user.email,
+      id: req.user.id
+    });
   }
+});
 
-  res.redirect('/signup.handlebars');
+
+authRoutes.delete('/posts/delete/:id', async (req, res) => {
+  const options = {
+      where: {
+          id: req.params.id
+      }
+  };
+  const dbExample = await db.Surveys.destroy(options);
+  res.json(dbExample);
+
 });
 
 module.exports = authRoutes;
